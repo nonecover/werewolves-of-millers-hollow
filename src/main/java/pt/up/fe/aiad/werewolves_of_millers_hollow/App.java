@@ -11,7 +11,7 @@ public class App {
 		GameBuilder.create()
 		.addPlayer("player1", PlayerTypes.WEREWOLF)
 		.addPlayer("player2", PlayerTypes.WEREWOLF)
-		.addPlayer("player3", PlayerTypes.VILLAGER)
+		.addPlayer("player3", PlayerTypes.FORTUNE_TELLER)
 		.addPlayer("player4", PlayerTypes.VILLAGER)
 		.addPlayer("player5", PlayerTypes.VILLAGER)
 		.addPlayer("player6", PlayerTypes.VILLAGER)

@@ -31,4 +31,21 @@ public abstract class BaseBehaviour extends SimpleBehaviour {
 		}
 	}
 
+	void sendToAll(int type, String content, String reciever) {
+		DFAgentDescription template = new DFAgentDescription();
+		ServiceDescription description = new ServiceDescription();
+		description.setType(reciever);
+		template.addServices(description);
+		try {
+			DFAgentDescription[] result = DFService.search(myAgent, template);
+			for (int i = 0; i < result.length; ++i) {
+				ACLMessage msg = new ACLMessage(type);
+				msg.addReceiver(result[i].getName());
+				msg.setContent(content);
+				myAgent.send(msg);
+			}
+		} catch (FIPAException e) {
+			e.printStackTrace();
+		}
+	}
 }

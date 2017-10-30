@@ -1,9 +1,10 @@
 package pt.up.fe.aiad.werewolves_of_millers_hollow.behaviours;
 
 import jade.core.Agent;
-import jade.core.behaviours.SimpleBehaviour;
+import jade.lang.acl.ACLMessage;
+import pt.up.fe.aiad.werewolves_of_millers_hollow.agents.Moderator;
 
-public class VillagerBehaviour extends SimpleBehaviour {
+public class VillagerBehaviour extends BaseBehaviour {
 	private static final long serialVersionUID = 8492835806340589393L;
 
 	public VillagerBehaviour(Agent agent) {
@@ -13,7 +14,11 @@ public class VillagerBehaviour extends SimpleBehaviour {
 
 	@Override
 	public void action() {
+		ACLMessage msg = this.myAgent.blockingReceive();
 
+		if (msg.getContent().equals(ModeratorBehaviour.NIGHT) && msg.getPerformative() == ACLMessage.INFORM) {
+			sendMessage(ACLMessage.CONFIRM, "OK", Moderator.NAME);
+		}
 	}
 
 	@Override
