@@ -6,7 +6,9 @@ import pt.up.fe.aiad.werewolves_of_millers_hollow.agents.Moderator;
 
 //map enums to states actions behaviours
 public enum States {
+
 	NIGHT(new Night()), DAY(new Night()), GAME_START(new GameStart());
+	public static States currentState = States.GAME_START;
 
 	private Function<Moderator, States> value;
 

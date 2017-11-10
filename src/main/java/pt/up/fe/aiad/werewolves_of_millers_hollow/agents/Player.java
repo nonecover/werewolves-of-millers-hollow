@@ -10,13 +10,15 @@ import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
+import pt.up.fe.aiad.werewolves_of_millers_hollow.common.Logger;
 import pt.up.fe.aiad.werewolves_of_millers_hollow.common.PlayerTypes;
 
 public class Player extends Agent {
 	public Map<String, PlayerTypes> players = new HashMap<>();
+	public PlayerTypes myType;
+	public Logger logger = Logger.getInstance(this);
 
 	protected void setup() {
-		System.out.println("player created");
 		try {
 			DFService.register(this, createDFAgentDescriptionWithType("player"));
 		} catch (FIPAException e) {
@@ -27,6 +29,7 @@ public class Player extends Agent {
 		Set<String> names = (Set<String>) args[1];
 		names.forEach(name -> players.put(name, null));
 
+		this.myType = type;
 		this.addBehaviour(type.getBehaviour(this));
 		sendMessage(ACLMessage.CONFIRM, "OK", Moderator.NAME);
 	}
@@ -41,7 +44,8 @@ public class Player extends Agent {
 		return dfd;
 	}
 
-	void sendMessage(int type, String content, String reciever) {
+	public void sendMessage(int type, String content, String reciever) {
+		logger.logMessage(type, content, reciever);
 		DFAgentDescription template = new DFAgentDescription();
 		ServiceDescription description = new ServiceDescription();
 		description.setType(reciever);

@@ -13,7 +13,6 @@ public class ModeratorBehaviour extends BaseBehaviour {
 
 	public static String NIGHT = "NIGHT";
 
-	States currentState = States.GAME_START;
 	private Moderator myAgent;
 
 	public ModeratorBehaviour(Moderator agent) {
@@ -41,7 +40,7 @@ public class ModeratorBehaviour extends BaseBehaviour {
 
 	@Override
 	public void action() {
-		currentState = currentState.getValue().apply(myAgent);
+		States.currentState = States.currentState.getValue().apply(myAgent);
 	}
 
 	@Override

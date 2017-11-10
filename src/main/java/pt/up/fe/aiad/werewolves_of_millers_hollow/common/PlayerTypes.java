@@ -16,8 +16,8 @@ public enum PlayerTypes {
 
 	private final static Map<PlayerTypes, Function<Agent, Behaviour>> typesToBehaviours = new HashMap<>();
 	static {
-		typesToBehaviours.put(VILLAGER, agent -> new VillagerBehaviour(agent));
-		typesToBehaviours.put(WEREWOLF, agent -> new WerewolfBehaviour(agent));
+		typesToBehaviours.put(VILLAGER, agent -> new VillagerBehaviour((Player) agent));
+		typesToBehaviours.put(WEREWOLF, agent -> new WerewolfBehaviour((Player) agent));
 		typesToBehaviours.put(FORTUNE_TELLER, agent -> new FortuneTellerBehaviour((Player) agent));
 	}
 

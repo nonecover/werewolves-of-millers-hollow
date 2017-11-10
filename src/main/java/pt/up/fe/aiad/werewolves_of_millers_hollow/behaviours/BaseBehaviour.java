@@ -14,6 +14,8 @@ public abstract class BaseBehaviour extends SimpleBehaviour {
 	}
 
 	void sendMessage(int type, String content, String reciever) {
+		// System.out.println(type + " " + content + " " + reciever);
+
 		DFAgentDescription template = new DFAgentDescription();
 		ServiceDescription description = new ServiceDescription();
 		description.setType(reciever);

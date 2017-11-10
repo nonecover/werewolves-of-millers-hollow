@@ -7,7 +7,7 @@ import pt.up.fe.aiad.werewolves_of_millers_hollow.agents.Moderator;
 import pt.up.fe.aiad.werewolves_of_millers_hollow.behaviours.ModeratorBehaviour;
 
 class GameStart implements Function<Moderator, States> {
-	private int playerCounter = 8;
+	private int playerCounter;
 
 	private boolean contructorFired = false;
 
@@ -15,6 +15,7 @@ class GameStart implements Function<Moderator, States> {
 		if (contructorFired)
 			return;
 		contructorFired = true;
+		playerCounter = myAgent.players.size();
 	}
 
 	@Override
@@ -24,6 +25,7 @@ class GameStart implements Function<Moderator, States> {
 		if (msg.getPerformative() == ACLMessage.CONFIRM) {
 			playerCounter--;
 		}
+
 		if (playerCounter == 0) {
 			System.out.println("its night");
 			playerCounter = myAgent.players.size();
